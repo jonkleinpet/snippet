@@ -26,16 +26,16 @@ export default class RegisterForm extends Component {
   render() {
 
     return (
-      <>
+      <section className="user-form-section">
         <h2>Register</h2>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
+        <form className="user-form" onSubmit={(e) => this.handleSubmit(e)}>
           <label htmlFor='user-name'>user name</label>
           <input id='user-name' name='user-name' type='text' onChange={(e) => this.updateUserName(e)} />
           <label htmlFor='password'>password</label>
           <input id='password' name='password' type='password' onChange={(e) => this.updatePassword(e)} />
           <button type="submit">Submit</button>
-          </form>
-      </>
+        </form>
+      </section>
     );
   }
 }

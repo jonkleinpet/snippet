@@ -16,6 +16,12 @@ const AuthService = {
     return jwt.verify(token, config.JWT_SECRET, {
       algorithms: ['HS256']
     });
+  },
+  getUserWithUserName(db, user_name) {
+    return db
+      .select('*')
+      .from('users')
+      .where({user_name})
   }
 };
 

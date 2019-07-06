@@ -19,8 +19,8 @@ export class UserProvider extends Component {
     }  
   }
 
-  processLogin = () => {
-    const jwtPayload = tokenService.parseAuthToken();
+  processLogin = async () => {
+    const jwtPayload = await tokenService.parseAuthToken(); 
     this.setUser({
       id: jwtPayload.id,
       user_name: jwtPayload.sub

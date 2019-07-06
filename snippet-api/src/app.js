@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const usersRoute = require('./routes/users/usersRoute');
+const snippetRoute = require('./routes/codeSnippets/codeSnippetsRoute');
 const { NODE_ENV } = require('./config');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use('/api', usersRoute);
+app.use('/api/snippets', snippetRoute);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

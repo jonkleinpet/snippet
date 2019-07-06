@@ -1,0 +1,10 @@
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#dashboard-section {
+  background: #016e6e;
+  padding: 2em;
+  border-radius: 5px;
+}
