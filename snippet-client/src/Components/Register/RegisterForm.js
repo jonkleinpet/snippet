@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import apiService from '../../services/apiService';
+import UserContext from '../../Context/UserContext';
+import tokenService from '../../services/tokenService';
 
 export default class RegisterForm extends Component {
   state = {
@@ -7,12 +9,22 @@ export default class RegisterForm extends Component {
     password: ''
   }
 
+  static contextType = UserContext;
+
   handleSubmit = (e) => {
     e.preventDefault();
+    this.registerUser()
   }
 
   registerUser = () => {
-    apiService.registerUser(this.state.user_name, this.state.password);
+    const { history } = this.props;
+    apiService
+      .registerUser(this.state.user_name, this.state.password)
+      .then(res => tokenService.saveAuthToken(res.authToken))
+      .then(() => {
+        this.context.processLogin()
+        history.push('/dashboard');
+      })
   }
 
   updateUserName = (e) => {

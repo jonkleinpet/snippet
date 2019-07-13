@@ -4,6 +4,7 @@ const snippetService = {
       .select('*')
       .from('snippets')
       .where('user_id', id)
+      .orderBy('date_created');
   },
 
   postSnippet(db, snippet) {
@@ -11,7 +12,18 @@ const snippetService = {
       .into('snippets')
       .insert(snippet)
       .returning('*')
-      .then(row => row[0])
+      .then(row => row[0]);
+  },
+
+  editSnippet(db, id, content, user_id) {
+    return db('snippets')
+      .where({ id })
+      .update({ content }, ['*'])
+      .then(async () => {
+        const snippets = await this.getSnippets(db, user_id);
+        return snippets;
+      });
+
   }
 };
 

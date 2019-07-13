@@ -23,17 +23,19 @@ usersRoute
         return res.send({ message: passwordError });
       }
 
-      const user = {
-        user_name,
-        password
-      };
-
-      const userNameIsValid = await usersService.checkUserName(knex, user_name);
-
-      if (!userNameIsValid) {
+      
+      const notValid = await usersService.checkUserName(knex, user_name);
+      
+      if (notValid) {
         return res.send({ message: 'User name already taken' });
       }   
-
+      
+      const hashPassword = await usersService.hashPassword(password);
+      const user = {
+        user_name,
+        password: hashPassword
+      };
+      
       const newUser = await usersService.registerUser(knex, user);
       const sub = newUser.user_name;
       const payload = {

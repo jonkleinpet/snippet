@@ -21,7 +21,7 @@ const AuthService = {
     return db
       .select('*')
       .from('users')
-      .where({user_name})
+      .where({ user_name });
   }
 };
 

@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 const usersService = {
   registerUser(db, user) {
     return db
@@ -5,6 +7,10 @@ const usersService = {
       .into('users')
       .returning('*')
       .then(([user]) => user);
+  },
+
+  hashPassword(password) {
+    return bcrypt.hash(password, 12);
   },
 
   checkUserName(db, user_name) {

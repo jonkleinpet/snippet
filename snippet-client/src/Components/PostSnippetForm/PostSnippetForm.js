@@ -7,6 +7,7 @@ export default class PostSnippetForm extends Component {
     super(props)
     this.state = {
       content: '',
+      title: '',
       validForm: null,
       message: ''
     }
@@ -15,31 +16,29 @@ export default class PostSnippetForm extends Component {
   static contextType = SnippetContext;
 
   updateContent = (content) => {
-    this.setState({content});
+    this.setState({ content });
   }
 
-  validateForm = () => {
-    let isValid = true;
-    let message = '';
-    const {content} = this.state;
+  updateTitle = (title) => {
+    this.setState({ title });
+  }
 
-    if (!content.length) {
-      isValid = false;
-      message = 'cannot submit empty note';
-      return this.setState({validForm: isValid, message});
-    }
-    this.setState({validForm: isValid, message});
+  resetState = () => {
+    this.setState({ title: '', content: '' });
   }
   
   handleSubmit = (e) => {
     e.preventDefault();
-    this.validateForm();
-    this.context.postSnippet(this.state.content);
+    this.context.postSnippet(this.state.content, this.state.title)
+      document.getElementById('snippet-form').reset()
+      this.resetState()
   }
 
   render() {
     return(
-      <form id="snippet-form" onSubmit={(e) => this.handleSubmit(e)}>
+      <form id="snippet-form" onSubmit={ (e) => this.handleSubmit(e) }>
+        <label htmlFor="title">Title</label>
+        <input id="title" name="title" type="text" onChange={(e) => this.updateTitle(e.target.value)} />
         <textarea
           cols="40"
           rows="20"

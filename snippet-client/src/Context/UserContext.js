@@ -5,8 +5,7 @@ import tokenService from '../services/tokenService';
 const UserContext = createContext({
   user: {},
   processLogin: () => {},
-  logoutUser: () => {},
-  registerUser: () => {}
+  logoutUser: () => {}
 });
 
 export default UserContext;
@@ -35,17 +34,11 @@ export class UserProvider extends Component {
     this.setState({ user: {} }, () => tokenService.clearAuthToken());
   }
 
-  registerUser = (user) => {
-    apiService
-      .registerUser(user)
-  }
-
   render() {
     const value = {
       user: this.state.user,
       processLogin: this.processLogin,
-      logoutUser: this.logoutUser,
-      registerUser: this.registerUser
+      logoutUser: this.logoutUser
     }
 
     return (

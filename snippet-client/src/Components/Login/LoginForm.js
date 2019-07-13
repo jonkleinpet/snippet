@@ -24,7 +24,6 @@ export default class LoginForm extends Component {
     .then(res => tokenService.saveAuthToken(res.authToken))
     .then(() => this.context.processLogin())
     .then(() => {
-      
       history.push('/dashboard')
   });
     
