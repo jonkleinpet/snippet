@@ -1,0 +1,57 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  letter-spacing: 1.3px;
+  line-height: 24px;
+  background: #272822;
+}
+
+#root {
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#main {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 5em;
+}
+
+.user-form {
+  display: flex;
+  flex-flow: column;
+  color: black;
+}
+
+.user-form button {
+  margin: 0 2em;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
+  background: lightslategray;
+}
+
+.user-form input {
+  margin: 0 0 2em;
+}
+
+.user-form-section {
+  background: #016e6e;
+  border-radius: 5px;
+}
+
+.user-form-section h2 {
+  margin: none;
+  color: black;
+}
+
+.user-form {
+  padding: 2em;
+}

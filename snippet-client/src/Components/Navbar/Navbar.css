@@ -1,0 +1,22 @@
+.nav-item {
+  color: white;
+}
+
+header a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#left-navs {
+  display: flex;
+}
+
+#right-navs {
+  display: flex;
+  text-align: right;
+}

@@ -1,0 +1,17 @@
+#snippet-form {
+  display: flex;
+  flex-flow: column;
+}
+
+#snippet-form button {
+  margin: 2em 8em;
+  background: lightslategray;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
+}
+
+#snippet-form button:active {
+  outline: none;
+  border: none;
+}

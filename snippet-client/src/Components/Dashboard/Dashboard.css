@@ -1,0 +1,30 @@
+#dashboard-section {
+  
+  padding: .5em;
+  border-radius: 5px;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 2em;
+}
+
+.snippet-item {
+  border-bottom: rgba(156, 156, 156, 0.5) thin solid;
+  padding: 0 1em 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+#dashboard-section h4 {
+  cursor: pointer;
+}
+
+h2 {
+  position: absolute;
+  top: 1px;
+}
+
+.snippet-item-last {
+  padding: 0 1em 1em;
+}

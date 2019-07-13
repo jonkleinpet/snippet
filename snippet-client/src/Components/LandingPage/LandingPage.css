@@ -1,0 +1,9 @@
+#landing-section {
+  display: block;
+  text-align: center;
+}
+
+#landing-section a {
+  text-decoration: none;
+  color: white;
+}
