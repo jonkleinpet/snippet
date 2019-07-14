@@ -55,3 +55,8 @@ button:hover {
 .user-form {
   padding: 2em;
 }
+
+button:active, button:focus {
+  outline: none;
+  border: none;
+}

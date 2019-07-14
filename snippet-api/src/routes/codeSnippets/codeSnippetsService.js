@@ -12,7 +12,10 @@ const snippetService = {
       .into('snippets')
       .insert(snippet)
       .returning('*')
-      .then(row => row[0]);
+      .then(async () => {
+        const snippets = await this.getSnippets(db, snippet.user_id);
+        return snippets;
+      });
   },
 
   editSnippet(db, id, content, user_id) {

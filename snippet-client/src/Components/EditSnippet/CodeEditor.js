@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Editor from 'react-simple-code-editor';
 import Prism from 'prismjs';
 import "prismjs/themes/prism-okaidia.css";
+import './CodeEditor.css';
 
 
 export default class CodeEditor extends Component {
@@ -11,9 +12,7 @@ export default class CodeEditor extends Component {
   }
 
   componentDidMount() {
-    this.setState({ code: this.props.code })
-    console.log(this.props);
-    
+    this.setState({ code: this.props.code }); 
   }
 
   handleSubmit = (e) => {
@@ -25,7 +24,7 @@ export default class CodeEditor extends Component {
 
   render() { 
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form id="edit-form" onSubmit={(e) => this.handleSubmit(e)}>
         <Editor
           className="language-javascript"
           value={this.state.code}

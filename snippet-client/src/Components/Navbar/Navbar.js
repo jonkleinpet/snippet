@@ -47,9 +47,6 @@ export default class Navbar extends Component {
         <Link to='/dashboard'>
           <nav className='nav-item'>Snippet</nav>
         </Link>
-        <Link to="/post-snippet">
-          <nav className='nav-item'>Create Snippet</nav>
-        </Link>
       </>
     )
   }

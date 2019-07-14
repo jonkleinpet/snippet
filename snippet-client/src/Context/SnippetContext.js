@@ -21,9 +21,7 @@ export class SnippetProvider extends Component {
   postSnippet = (content, title) => {
     apiService
       .postSnippet(content, title)
-      .then(res => {
-        this.updateSnippets(res);
-      });
+      .then(res => this.updateSnippets(res));
   }
 
   getSnippets = () => {

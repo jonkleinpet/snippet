@@ -13,8 +13,6 @@ export default class PostSnippetForm extends Component {
     }
   }
 
-  static contextType = SnippetContext;
-
   updateContent = (content) => {
     this.setState({ content });
   }
@@ -27,11 +25,12 @@ export default class PostSnippetForm extends Component {
     this.setState({ title: '', content: '' });
   }
   
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.context.postSnippet(this.state.content, this.state.title)
-      document.getElementById('snippet-form').reset()
-      this.resetState()
+    await this.props.postSnippet(this.state.content, this.state.title)
+    document.getElementById('snippet-form').reset()
+    this.resetState();
+    this.props.toggleForm();
   }
 
   render() {
@@ -44,6 +43,7 @@ export default class PostSnippetForm extends Component {
           rows="20"
           onChange={(e) => this.updateContent(e.target.value)}
         />
+        <button onClick={() => this.props.toggleForm()}>Cancel</button>
         <button type='Submit'>Submit</button>
       </form>
     );

@@ -1,5 +1,4 @@
 #dashboard-section {
-  
   padding: .5em;
   border-radius: 5px;
   width: 80%;
@@ -27,4 +26,12 @@ h2 {
 
 .snippet-item-last {
   padding: 0 1em 1em;
+}
+
+#new-snippet-button {
+  margin: 2em;
+  background: lightslategray;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
 }

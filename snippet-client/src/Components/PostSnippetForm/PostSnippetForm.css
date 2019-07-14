@@ -1,17 +1,30 @@
 #snippet-form {
   display: flex;
   flex-flow: column;
+  width: 40%;
+  align-items: center;
 }
 
 #snippet-form button {
-  margin: 2em 8em;
+  margin: 1em 0;
+  min-width: 80px;
+  max-width: 100px;
   background: lightslategray;
   border-radius: 5px;
   border-style: none;
   padding: .3em;
 }
 
+#snippet-form input {
+  margin-bottom: 10px;
+}
+
 #snippet-form button:active {
   outline: none;
   border: none;
+}
+
+#form-container {
+  display: flex;
+  justify-content: center;
 }

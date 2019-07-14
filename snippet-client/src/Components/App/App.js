@@ -4,7 +4,6 @@ import Navbar from '../Navbar/Navbar';
 import RegisterRoute from '../../Routes/RegisterRoute/RegisterRoute';
 import LoginRoute from '../../Routes/LoginRoute/LoginRoute';
 import LandingRoute from '../../Routes/LandingRoute/LandingRoute';
-import PostSnippetRoute from '../../Routes/postSnippetRoute/PostSnippetRoute';
 import DashboardRoute from '../../Routes/DashboardRoute/DashboardRoute';
 import { UserProvider } from '../../Context/UserContext';
 import './App.css';
@@ -21,7 +20,6 @@ function App() {
           <Route path="/dashboard" component={ DashboardRoute } />
           <Route path="/register" component={ RegisterRoute } />
           <Route path="/login" component={ LoginRoute } />
-          <Route path="/post-snippet" component={ PostSnippetRoute } />
         </section>
       </div>
     </UserProvider>
