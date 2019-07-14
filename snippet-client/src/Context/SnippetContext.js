@@ -5,7 +5,8 @@ const SnippetContext = createContext({
   snippets: [],
   postSnippet: () => { },
   getSnippets: () => { },
-  editSnippet: () => { }
+  editSnippet: () => { },
+  deleteSnippet: () => { }
 });
 
 export default SnippetContext;
@@ -38,11 +39,17 @@ export class SnippetProvider extends Component {
   editSnippet = (content, id) => {
     apiService
       .editSnippet(content, id)
-      .then(snippets => this.updateSnippets(snippets))
+      .then(snippets => this.updateSnippets(snippets));
   }
 
   updateSnippets = (snippets) => {
     this.setState({ snippets });
+  }
+
+  deleteSnippet = (id) => {
+    apiService
+      .deleteSnippet(id)
+      .then(snippets => this.updateSnippets(snippets));
   }
   
   async componentDidMount() {
@@ -55,7 +62,8 @@ export class SnippetProvider extends Component {
       snippets: this.state.snippets,
       postSnippet: this.postSnippet,
       getSnippets: this.getSnippets,
-      editSnippet: this.editSnippet
+      editSnippet: this.editSnippet,
+      deleteSnippet: this.deleteSnippet
     }
     return(
       <SnippetContext.Provider value={value}>

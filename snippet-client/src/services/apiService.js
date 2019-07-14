@@ -68,6 +68,23 @@ const apiService = {
       })
   },
 
+  deleteSnippet(id) {
+    return fetch(`${config.API_ENDPOINT}/snippets`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${ tokenService.getAuthToken() }`
+      },
+      body: JSON.stringify({ id })
+    })
+      .then(res => {
+        if (!res.ok) {
+          return new Error('could not delete snippet');
+        }
+        return res.json();
+      })
+  },
+
   getSnippets() {
     return fetch(`${ config.API_ENDPOINT }/snippets`, {
       method: 'GET',

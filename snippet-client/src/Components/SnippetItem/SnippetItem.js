@@ -3,6 +3,7 @@ import SnippetContext from '../../Context/SnippetContext';
 import CodeEditor from '../EditSnippet/CodeEditor';
 import Prism from 'prismjs';
 import EditButton from '../Buttons/EditButton';
+import DeleteButton from '../Buttons/DeleteButton';
 import './SnippetItem.css';
 import 'prismjs/themes/prism-okaidia.css';
 
@@ -63,6 +64,10 @@ export default class SnippetItem extends Component {
     return (
       <>
         <h4 onClick={ () => this.toggleHidden() }>{ title }</h4>
+        <DeleteButton
+          id={id}
+          deleteSnippet={ this.context.deleteSnippet }
+        />
         {this.displayEditor(content, id)}
         <EditButton
           active={ this.state.editMode }
@@ -73,8 +78,16 @@ export default class SnippetItem extends Component {
   }
 
   hiddenSnippet = () => {
-    const { title } = this.props.snippet;
-    return <h4 onClick={ () => this.toggleHidden() }>{ title }</h4>
+    const { title, id } = this.props.snippet;
+    return (
+      <>
+        <h4 onClick={() => this.toggleHidden()}>{title}</h4>
+        <DeleteButton
+          deleteSnippet={ this.context.deleteSnippet }
+          id={id}
+        />
+      </>
+    );
   }
 
   render() {

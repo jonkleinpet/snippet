@@ -26,7 +26,16 @@ const snippetService = {
         const snippets = await this.getSnippets(db, user_id);
         return snippets;
       });
+  },
 
+  deleteSnippet(db, id, user_id) {
+    return db('snippets')
+      .where({ id })
+      .del()
+      .then(async () => {
+        const snippets = await this.getSnippets(db, user_id);
+        return snippets;
+      });
   }
 };
 

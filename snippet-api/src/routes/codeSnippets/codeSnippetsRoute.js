@@ -54,6 +54,19 @@ snippetRoute
     catch (error) {
       next(error);
     }
+  })
+  .delete(requireAuth, parser, async (req, res, next) => {
+    try {
+      const db = req.app.get('db');
+      const { id } = req.body;
+      const user_id = req.user[0].id; 
+      const snippets = await snippetService.deleteSnippet(db, id, user_id);
+      res.send(snippets);
+    }
+
+    catch (error) {
+      next(error);
+    }
   });
 
 module.exports = snippetRoute;
