@@ -14,15 +14,14 @@ export default class Dashboard extends Component {
   showSelectedSnippet = () => {
     return (
       !this.context.activePostForm
-      
         ? <section id="dashboard-section">
             <SnippetDisplay snippet={ this.context.selectedSnippet } />
             <div className="main-button-container">
               <div className="left-buttons">
               {
                 !this.context.activeEditMode 
-                ? <EditButton toggleEditMode = { this.context.toggleEditMode } />
-                : null
+                  ? <EditButton toggleEditMode = { this.context.toggleEditMode } />
+                  : null
               }
                 <DeleteButton 
                   snippet={ this.context.selectedSnippet }
@@ -34,7 +33,7 @@ export default class Dashboard extends Component {
               </div>
             </div>
           </section>
-
+        
         : <section id="dashboard-section">
             <SnippetDisplay snippet={ this.context.selectedSnippet } />
             <div id='form-container'>

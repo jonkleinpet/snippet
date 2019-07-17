@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SnippetContext from '../../Context/SnippetContext';
 import SnippetListItem from '../SnippetList/SnippetListItem';
+import tokenService from '../../services/tokenService';
 import './SidePane.css';
 
 export default class SidePane extends Component {
@@ -13,20 +14,26 @@ export default class SidePane extends Component {
 
   static contextType = SnippetContext;
 
+  isUserLoggedIn = () => {
+    return !!tokenService.getAuthToken();
+  }
+
   makeSideWindow = () => {
     return (
-      <section id="side-pane-container"> 
-        <ul>
-          { this.context.snippets.map((s, i) => {
-            return (
-              <li key={i}>
-                <SnippetListItem className={ this.getClassName(i) } snippet={s} />
-              </li>
-            )
-          })
-          }
-        </ul>
-      </section>
+      this.isUserLoggedIn()
+      ? <section id="side-pane-container"> 
+          <ul>
+            { this.context.snippets.map((s, i) => {
+              return (
+                <li key={i}>
+                  <SnippetListItem className={ this.getClassName(i) } snippet={s} />
+                </li>
+              )
+            })
+            }
+          </ul>
+        </section>
+      : null
     )
   }
 
