@@ -1,6 +1,7 @@
 #landing-section {
   display: block;
   text-align: center;
+  width: 80%;
 }
 
 #landing-section a {

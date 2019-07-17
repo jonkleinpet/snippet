@@ -2,21 +2,16 @@ import React, { Component } from 'react';
 import SnippetContext from '../../Context/SnippetContext';
 import CodeEditor from '../EditSnippet/CodeEditor';
 import Prism from 'prismjs';
-import EditButton from '../Buttons/EditButton';
-import DeleteButton from '../Buttons/DeleteButton';
-import './SnippetItem.css';
+import './SnippetDisplay.css';
 import 'prismjs/themes/prism-okaidia.css';
 
-export default class SnippetItem extends Component {
+export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      editMode: false,
-      hidden: true
+      editMode: false
     }
   }
-
-  static contextType = SnippetContext;
 
   componentDidUpdate() {
     if (this.state.editMode) {
@@ -27,12 +22,8 @@ export default class SnippetItem extends Component {
     }
   }
 
-  toggleHidden = () => {
-    this.setState({ hidden: !this.state.hidden }, () => {
-      if (this.state.editMode) {
-        this.toggleEditMode();
-      }
-    });
+  componentDidMount() {
+    Prism.highlightAll();
   }
 
   toggleEditMode = () => {
@@ -61,20 +52,18 @@ export default class SnippetItem extends Component {
 
   shownSnippet = () => {
     const { content, title, id } = this.props.snippet;
+    console.log(this.props.snippet);
+    
     return (
       <>
-        <h4 onClick={ () => this.toggleHidden() }>{ title }</h4>
-        <DeleteButton
-          id={id}
-          deleteSnippet={ this.context.deleteSnippet }
-        />
+        <h4>{ title }</h4>
         {this.displayEditor(content, id)}
-        <EditButton
-          active={ this.state.editMode }
-          toggleEditMode={ this.toggleEditMode }
-        />
       </>
-    )
+    ) 
+  }
+
+  snippetReadyCheck = () => {
+    return !this.props.snippet ? false : true
   }
 
   hiddenSnippet = () => {
@@ -82,15 +71,17 @@ export default class SnippetItem extends Component {
     return (
       <>
         <h4 onClick={() => this.toggleHidden()}>{title}</h4>
-        <DeleteButton
-          deleteSnippet={ this.context.deleteSnippet }
-          id={id}
-        />
       </>
     );
   }
 
   render() {
-    return this.state.hidden ? this.hiddenSnippet() : this.shownSnippet()
+    return (
+      !this.snippetReadyCheck()
+        ? null
+        : <pre>
+            <code className={ 'language-javascript' }>{ this.props.snippet.content }</code>
+          </pre>
+    )
   }
 }

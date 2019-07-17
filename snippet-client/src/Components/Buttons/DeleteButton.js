@@ -3,5 +3,5 @@ import './DeleteButton.css'
 
 export default function DeleteButton(props) {
   const { deleteSnippet, id } = props;
-  return <button class='delete-button' onClick={() => deleteSnippet(id)}>Delete</button>
+  return <button className='delete-button' onClick={() => deleteSnippet(id)}>Delete</button>
 }
