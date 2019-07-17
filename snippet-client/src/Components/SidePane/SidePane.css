@@ -15,3 +15,7 @@
   position: sticky;
   top: 15px;
 }
+
+#side-pane-container li:hover {
+  cursor: pointer;
+}

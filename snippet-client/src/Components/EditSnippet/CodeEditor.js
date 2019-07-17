@@ -36,7 +36,8 @@ export default class CodeEditor extends Component {
             fontSize: 14
           }}
         />
-        <button>Submit</button>
+        <button htmlFor="edit-form">Submit</button>
+        <button onClick={ () => this.props.toggleEditMode() }>Cancel</button>
       </form>
     );
   }

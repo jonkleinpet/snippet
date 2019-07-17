@@ -4,11 +4,15 @@ import apiService from '../services/apiService';
 const SnippetContext = createContext({
   snippets: [],
   selectedSnippet: null,
+  activeEditMode: false,
+  activePostForm: false,
   selectSnippet: () => { },
   postSnippet: () => { },
   getSnippets: () => { },
   editSnippet: () => { },
-  deleteSnippet: () => { }
+  deleteSnippet: () => { },
+  toggleEditMode: () => { },
+  togglePostForm: () => { }
 });
 
 export default SnippetContext;
@@ -18,8 +22,18 @@ export class SnippetProvider extends Component {
     super(props)
     this.state = {
       snippets: [],
-      selectedSnippet: null
+      selectedSnippet: null,
+      activeEditMode: false,
+      activePostForm: false
     }
+  }
+
+  toggleEditMode = () => {
+    this.setState({ activeEditMode: !this.state.activeEditMode })
+  }
+
+  togglePostForm = () => {
+    this.setState({ activePostForm: !this.state.activePostForm })
   }
 
   postSnippet = (content, title) => {
@@ -46,9 +60,7 @@ export class SnippetProvider extends Component {
       if (s.id === id) {
         snippet = s;
       }
-    })
-    console.log(snippet);
-    
+    }) 
     this.setState({selectedSnippet: snippet})
   }
 
@@ -77,11 +89,15 @@ export class SnippetProvider extends Component {
     const value = {
       snippets: this.state.snippets,
       selectedSnippet: this.state.selectedSnippet,
+      activeEditMode: this.state.activeEditMode,
+      activePostForm: this.state.activePostForm,
       selectSnippet: this.selectSnippet,
       postSnippet: this.postSnippet,
       getSnippets: this.getSnippets,
       editSnippet: this.editSnippet,
-      deleteSnippet: this.deleteSnippet
+      deleteSnippet: this.deleteSnippet,
+      toggleEditMode: this.toggleEditMode,
+      togglePostForm: this.togglePostForm
     }
     return(
       <SnippetContext.Provider value={value}>

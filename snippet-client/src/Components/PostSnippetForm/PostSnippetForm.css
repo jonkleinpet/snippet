@@ -1,11 +1,11 @@
-#snippet-form {
+#post-snippet-form {
   display: flex;
   flex-flow: column;
   width: 40%;
   align-items: center;
 }
 
-#snippet-form button {
+#post-snippet-form button {
   margin: 1em 0;
   min-width: 80px;
   max-width: 100px;
@@ -15,11 +15,11 @@
   padding: .3em;
 }
 
-#snippet-form input {
+#post-snippet-form input {
   margin-bottom: 10px;
 }
 
-#snippet-form button:active {
+#post-snippet-form button:active {
   outline: none;
   border: none;
 }
@@ -27,4 +27,5 @@
 #form-container {
   display: flex;
   justify-content: center;
+  max-width: 70%
 }

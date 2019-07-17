@@ -6,18 +6,14 @@ import './SnippetDisplay.css';
 import 'prismjs/themes/prism-okaidia.css';
 
 export default class SnippetDisplay extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      editMode: false
-    }
-  }
+
+  static contextType = SnippetContext;
 
   componentDidUpdate() {
-    if (this.state.editMode) {
+    if (this.context.activeEditMode) {
       Prism.highlightAll();
     }
-    if (!this.state.hidden) {
+    if (!this.context.activeEditMode) {
       Prism.highlightAll();
     }
   }
@@ -31,14 +27,14 @@ export default class SnippetDisplay extends Component {
   }
 
   displayEditor = (content, id) => {
-    if (this.state.editMode) {
+    if (this.context.activeEditMode) {
       return (
         <pre>
           <CodeEditor
             id={ id }
             code={ content }
             editSnippet={ this.context.editSnippet }
-            toggleEditMode={ this.toggleEditMode }
+            toggleEditMode={ this.context.toggleEditMode }
           />
         </pre>
       )
@@ -50,38 +46,17 @@ export default class SnippetDisplay extends Component {
     )
   }
 
-  shownSnippet = () => {
-    const { content, title, id } = this.props.snippet;
-    console.log(this.props.snippet);
-    
-    return (
-      <>
-        <h4>{ title }</h4>
-        {this.displayEditor(content, id)}
-      </>
-    ) 
-  }
-
   snippetReadyCheck = () => {
     return !this.props.snippet ? false : true
   }
 
-  hiddenSnippet = () => {
-    const { title, id } = this.props.snippet;
-    return (
-      <>
-        <h4 onClick={() => this.toggleHidden()}>{title}</h4>
-      </>
-    );
-  }
-
   render() {
+    
     return (
+
       !this.snippetReadyCheck()
         ? null
-        : <pre>
-            <code className={ 'language-javascript' }>{ this.props.snippet.content }</code>
-          </pre>
+        : this.displayEditor(this.props.snippet.content, this.props.snippet.id)
     )
   }
 }
