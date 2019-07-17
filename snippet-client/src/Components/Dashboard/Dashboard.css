@@ -4,6 +4,7 @@
   width: 80%;
   text-align: left;
   margin-bottom: 2em;
+  min-height: 100vh;
 }
 
 .snippet-item {
@@ -34,4 +35,8 @@ h2 {
   border-radius: 5px;
   border-style: none;
   padding: .3em;
+}
+
+#dashboard-section {
+  margin: 0 0 0 10%;
 }

@@ -3,6 +3,8 @@ import apiService from '../services/apiService';
 
 const SnippetContext = createContext({
   snippets: [],
+  selectedSnippet: null,
+  selectSnippet: () => { },
   postSnippet: () => { },
   getSnippets: () => { },
   editSnippet: () => { },
@@ -15,7 +17,8 @@ export class SnippetProvider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      snippets: []
+      snippets: [],
+      selectedSnippet: null
     }
   }
 
@@ -30,10 +33,23 @@ export class SnippetProvider extends Component {
       .getSnippets()
       .then(snippets => {
         if (!snippets.message) {
-          return this.updateSnippets(snippets);
+          this.updateSnippets(snippets);
+        } else {
+          return;
         }
-        return;
       });
+  }
+
+  selectSnippet = (id) => {
+    let snippet = {};
+    this.state.snippets.forEach(s => {
+      if (s.id === id) {
+        snippet = s;
+      }
+    })
+    console.log(snippet);
+    
+    this.setState({selectedSnippet: snippet})
   }
 
   editSnippet = (content, id) => {
@@ -43,7 +59,7 @@ export class SnippetProvider extends Component {
   }
 
   updateSnippets = (snippets) => {
-    this.setState({ snippets });
+    this.setState({ snippets, selectedSnippet: snippets[0] });
   }
 
   deleteSnippet = (id) => {
@@ -60,6 +76,8 @@ export class SnippetProvider extends Component {
   render() {
     const value = {
       snippets: this.state.snippets,
+      selectedSnippet: this.state.selectedSnippet,
+      selectSnippet: this.selectSnippet,
       postSnippet: this.postSnippet,
       getSnippets: this.getSnippets,
       editSnippet: this.editSnippet,

@@ -1,0 +1,17 @@
+#side-pane-container ul {
+  list-style: none;
+  padding: 0;
+  position: sticky;
+  top: 15px;
+  margin: 15px 0 15px 0;
+  text-align: center;
+  display: grid;
+}
+
+#side-pane-container {
+  background-color: gray;
+  width: 20%;
+  text-align: center;
+  position: sticky;
+  top: 15px;
+}

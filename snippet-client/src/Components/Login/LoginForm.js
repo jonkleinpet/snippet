@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UserContext from '../../Context/UserContext';
 import apiService from '../../services/apiService';
 import tokenService from '../../services/tokenService';
-import Navbar from '../../Components/Navbar/Navbar';
 
 export default class LoginForm extends Component {
   state = {

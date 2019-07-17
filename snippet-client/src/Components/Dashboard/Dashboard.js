@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import SnippetItem from '../SnippetItem/SnippetItem';
+import SnippetDisplay from '../SnippetDisplay/SnippetDisplay';
 import SnippetContext from '../../Context/SnippetContext';
 import PostSnippetForm from '../PostSnippetForm/PostSnippetForm';
+import CodeEditor from '../EditSnippet/CodeEditor';
 import './Dashboard.css';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      formHidden: true
+      formHidden: true,
+      editMode: false
     }
   }
   
@@ -18,36 +20,10 @@ export default class Dashboard extends Component {
     this.setState({ formHidden: !this.state.formHidden });
   }
 
-  getClassName = i => {
-    const numOfSnippets = Object.keys(this.context.snippets).length;
-    return i === numOfSnippets - 1 ? "snippet-item-last" : "snippet-item";
-  };
-
-  makeSnippet = () => {
+  showSelectedSnippet = () => {
     return (
-      <section id="dashboard-section">
-        { this.context.snippets.map((s, i) => {
-          return (
-            <div className={ this.getClassName(i) } key={ i }>
-              <SnippetItem snippet={s} />
-            </div>
-          )
-        }) }
-        <button onClick={() => this.toggleForm()} id='new-snippet-button'>Add Snippet</button>
-      </section>
-    )
-  }
-
-  makeSnippetForm = () => {
-    return (
-      <section id="dashboard-section">
-        { this.context.snippets.map((s, i) => {
-          return (
-            <div className={ this.getClassName(i) } key={ i }>
-              <SnippetItem snippet={ s } />
-            </div>
-          )
-        }) }
+      <section id="dashboard-section">    
+        <SnippetDisplay snippet={ this.context.selectedSnippet } />
         <div id='form-container'>
           <PostSnippetForm postSnippet={this.context.postSnippet} toggleForm={this.toggleForm} />
         </div>
@@ -56,6 +32,14 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    return this.state.formHidden ? this.makeSnippet() : this.makeSnippetForm();
+    console.log(this.context.selectedSnippet);
+    
+    return (
+      <section id='dashboard-section'>
+        {
+          <SnippetDisplay snippet={this.context.selectedSnippet} />
+        }
+      </section>
+    )
   }
 }
