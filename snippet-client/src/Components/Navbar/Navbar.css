@@ -19,4 +19,6 @@ header {
 #right-navs {
   display: flex;
   text-align: right;
+  position: fixed;
+  right: 1em;
 }

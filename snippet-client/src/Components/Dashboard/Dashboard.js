@@ -15,6 +15,7 @@ export default class Dashboard extends Component {
     return (
       !this.context.activePostForm
         ? <section id="dashboard-section">
+          <h2>Your Code Snippets</h2>
             <SnippetDisplay snippet={ this.context.selectedSnippet } />
             <div className="main-button-container">
               <div className="left-buttons">
@@ -35,6 +36,7 @@ export default class Dashboard extends Component {
           </section>
         
         : <section id="dashboard-section">
+          <h2>Your Code Snippets</h2>
             <SnippetDisplay snippet={ this.context.selectedSnippet } />
             <div id='form-container'>
               <PostSnippetForm 
@@ -47,6 +49,11 @@ export default class Dashboard extends Component {
   }
 
   render() {  
-    return this.showSelectedSnippet();
+    return (
+      <>
+        
+        {this.showSelectedSnippet()}
+      </>
+    );
   }
 }

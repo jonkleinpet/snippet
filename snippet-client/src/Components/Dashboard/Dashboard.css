@@ -2,7 +2,6 @@
   padding: .5em;
   border-radius: 5px;
   width: 80%;
-  text-align: left;
   margin-bottom: 2em;
   min-height: 100vh;
 }
@@ -21,8 +20,7 @@ pre {
 }
 
 h2 {
-  position: absolute;
-  top: 1px;
+  margin-right: 6.5em;
 }
 
 .snippet-item-last {
