@@ -29,6 +29,8 @@ const snippetService = {
   },
 
   deleteSnippet(db, id, user_id) {
+    console.log({id});
+    
     return db('snippets')
       .where({ id })
       .del()

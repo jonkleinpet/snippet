@@ -1,61 +1,59 @@
 import React, { Component } from 'react';
-import SnippetItem from '../SnippetItem/SnippetItem';
+import SnippetDisplay from '../SnippetDisplay/SnippetDisplay';
 import SnippetContext from '../../Context/SnippetContext';
 import PostSnippetForm from '../PostSnippetForm/PostSnippetForm';
+import EditButton from '../Buttons/EditButton';
+import PostButton from '../Buttons/PostButton';
+import DeleteButton from '../Buttons/DeleteButton';
 import './Dashboard.css';
 
 export default class Dashboard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      formHidden: true
-    }
-  }
   
   static contextType = SnippetContext;
 
-  toggleForm = () => {
-    this.setState({ formHidden: !this.state.formHidden });
-  }
-
-  getClassName = i => {
-    const numOfSnippets = Object.keys(this.context.snippets).length;
-    return i === numOfSnippets - 1 ? "snippet-item-last" : "snippet-item";
-  };
-
-  makeSnippet = () => {
+  showSelectedSnippet = () => {
     return (
-      <section id="dashboard-section">
-        { this.context.snippets.map((s, i) => {
-          return (
-            <div className={ this.getClassName(i) } key={ i }>
-              <SnippetItem snippet={s} />
+      !this.context.activePostForm
+        ? <section id="dashboard-section">
+          <h2>Your Code Snippets</h2>
+            <SnippetDisplay snippet={ this.context.selectedSnippet } />
+            <div className="main-button-container">
+              <div className="left-buttons">
+              {
+                !this.context.activeEditMode 
+                  ? <EditButton toggleEditMode = { this.context.toggleEditMode } />
+                  : null
+              }
+                <DeleteButton 
+                  snippet={ this.context.selectedSnippet }
+                  deleteSnippet={ this.context.deleteSnippet } 
+                  />
+              </div>
+              <div className="right-buttons">
+                <PostButton togglePostForm={ this.context.togglePostForm } />
+              </div>
             </div>
-          )
-        }) }
-        <button onClick={() => this.toggleForm()} id='new-snippet-button'>Add Snippet</button>
-      </section>
+          </section>
+        
+        : <section id="dashboard-section">
+          <h2>Your Code Snippets</h2>
+            <SnippetDisplay snippet={ this.context.selectedSnippet } />
+            <div id='form-container'>
+              <PostSnippetForm 
+                postSnippet={ this.context.postSnippet }
+                toggleForm={ this.context.togglePostForm }
+              />
+            </div>
+          </section>
     )
   }
 
-  makeSnippetForm = () => {
+  render() {  
     return (
-      <section id="dashboard-section">
-        { this.context.snippets.map((s, i) => {
-          return (
-            <div className={ this.getClassName(i) } key={ i }>
-              <SnippetItem snippet={ s } />
-            </div>
-          )
-        }) }
-        <div id='form-container'>
-          <PostSnippetForm postSnippet={this.context.postSnippet} toggleForm={this.toggleForm} />
-        </div>
-      </section>
-    )
-  }
-
-  render() {
-    return this.state.formHidden ? this.makeSnippet() : this.makeSnippetForm();
+      <>
+        
+        {this.showSelectedSnippet()}
+      </>
+    );
   }
 }

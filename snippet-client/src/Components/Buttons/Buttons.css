@@ -1,0 +1,33 @@
+.delete-button {
+  margin: 0 1em;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
+  background: lightslategray;
+}
+
+.edit-button {
+  margin: 0 1em;
+  background: lightslategray;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
+}
+
+.post-button {
+  background: lightslategray;
+  border-radius: 5px;
+  border-style: none;
+  padding: .3em;
+}
+
+.main-button-container {
+  display: inline-block;
+  margin: 1em 0;
+  min-width: 67%;
+}
+
+.right-buttons {
+  text-align: right;
+  margin: 2em 0;
+}

@@ -76,9 +76,9 @@ render() {
   
   return (
     <>
-      <div id='left-navs'>
+      {/* <div id='left-navs'>
         {this.renderLeftNav()}
-      </div>
+      </div> */}
       <div id='right-navs'>
         {this.renderRightNav()}
       </div>

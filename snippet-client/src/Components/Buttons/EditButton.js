@@ -1,5 +1,5 @@
 import React from 'react';
-import './EditButton.css';
+import './Buttons.css';
 
 export default function EditButton(props) {
   const { toggleEditMode, active } = props;

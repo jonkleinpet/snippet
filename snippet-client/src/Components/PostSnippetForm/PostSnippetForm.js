@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SnippetContext from '../../Context/SnippetContext';
 import './PostSnippetForm.css';
 
 export default class PostSnippetForm extends Component {
@@ -28,23 +27,23 @@ export default class PostSnippetForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     await this.props.postSnippet(this.state.content, this.state.title)
-    document.getElementById('snippet-form').reset()
+    document.getElementById('post-snippet-form').reset()
     this.resetState();
     this.props.toggleForm();
   }
 
   render() {
     return(
-      <form id="snippet-form" onSubmit={ (e) => this.handleSubmit(e) }>
+      <form name="post-snippet-form" id="post-snippet-form" onSubmit={ (e) => this.handleSubmit(e) }>
         <label htmlFor="title">Title</label>
         <input id="title" name="title" type="text" onChange={(e) => this.updateTitle(e.target.value)} />
         <textarea
-          cols="40"
-          rows="20"
+          cols="100"
+          rows="30"
           onChange={(e) => this.updateContent(e.target.value)}
         />
+        <button htmlFor="post-snippet-form" type='Submit'>Submit</button>
         <button onClick={() => this.props.toggleForm()}>Cancel</button>
-        <button type='Submit'>Submit</button>
       </form>
     );
   }
