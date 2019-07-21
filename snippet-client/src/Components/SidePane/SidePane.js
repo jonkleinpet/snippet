@@ -18,6 +18,10 @@ export default class SidePane extends Component {
     return !!tokenService.getAuthToken();
   }
 
+  doSnippetsExist = () => {
+    return this.context.snippets ? true : false
+  }
+
   makeSideWindow = () => {
     return (
       this.isUserLoggedIn()
@@ -44,7 +48,9 @@ export default class SidePane extends Component {
 
   render() {
     return (
-      this.makeSideWindow()
+      !this.doSnippetsExist()
+        ? this.makeSideWindow()
+        : null
     )
   }
 }
